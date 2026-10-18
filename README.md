@@ -108,6 +108,8 @@ Routes have endpoint-specific validation and guards. Check the controller and DT
 
 `POST /users/:id/setup` applies profile updates, an optional payment method, and the account setup audit row in one database transaction. Repeated setup requests reuse an existing matching payment method instead of creating another one.
 
+`PATCH /orders/:id` accepts only escrow-backed forward transitions: `created` to `locked` when escrow is funded, and `locked` to `released` or `disputed` when escrow has the matching terminal status. The write is conditional on the observed order and escrow states, so stale requests return HTTP 409 with the stable `ORDER_INVALID_TRANSITION` error code. Cancellation and expiration must use their dedicated flows. Terminal order states cannot be reopened through PATCH.
+
 `GET /orders/user-stats/:userId` requires a valid JWT. These private account metrics are available to the account owner and administrators only; the response is limited to total and completed order counts and contains no individual order or counterparty details.
 
 Offer updates require the current `expectedVersion` from the offer response. Successful updates increment the persisted version; stale versions return HTTP 409 with `OFFER_VERSION_CONFLICT`. Existing rows start at version `0` through the `add_offer_version` migration.
