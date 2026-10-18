@@ -21,6 +21,7 @@ export enum ErrorCode {
 
   // ── Offer ────────────────────────────────────────────────────────────
   OFFER_NOT_FOUND = 'OFFER_NOT_FOUND',
+  OFFER_VERSION_CONFLICT = 'OFFER_VERSION_CONFLICT',
 
   // ── Order ────────────────────────────────────────────────────────────
   ORDER_NOT_FOUND = 'ORDER_NOT_FOUND',
@@ -70,6 +71,7 @@ export enum ErrorCode {
 
   // ── General ──────────────────────────────────────────────────────────
   VALIDATION_ERROR = 'VALIDATION_ERROR',
+  PAYLOAD_TOO_LARGE = 'PAYLOAD_TOO_LARGE',
   RESOURCE_NOT_FOUND = 'RESOURCE_NOT_FOUND',
   INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR',
   CSRF_TOKEN_MISSING = 'CSRF_TOKEN_MISSING',
